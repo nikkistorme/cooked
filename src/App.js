@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
-import {Jumbotron} from 'react-bootstrap';
 
+import Header from './components/Header';
 import List from './components/List';
 import AddIngredient from './components/AddIngredient';
 
 class App extends Component {
-
   state = {
-    shelves: {}
+    shelves: {},
+    recipes: {}
   }
 
   // function for making a new shelf
@@ -19,6 +19,7 @@ class App extends Component {
     return(newShelf);
   };
   
+  // function for adding an ingredient
   newIngredient = (ingredient) => {
     console.log(ingredient);
     // take a copy of existing state
@@ -37,6 +38,7 @@ class App extends Component {
           console.log('shelf does not exist')
           const newShelf = this.makeNewShelf(ingredient);
           shelves[`shelf${Date.now()}`] = newShelf;
+          return(true);
         }
       });
     } else {
@@ -46,23 +48,46 @@ class App extends Component {
     // push ingredient to state
     console.log(shelves);
     this.setState({ shelves });
-  }
+  };
 
+  deleteIngredient = (target_shelf, ingredient) => {
+    console.log(ingredient);
+    const shelves = {...this.state.shelves};
+    Object.keys(shelves).some(shelf => {
+      if (shelves[shelf].name.toLowerCase() === target_shelf.toLowerCase()) {
+        // console.log(target_shelf);
+        const original_shelf = shelves[shelf].contents;
+        const revised_shelf = original_shelf.filter((item) => {
+          return item !== ingredient;
+        });
+        if (revised_shelf.length === 0) {
+          delete shelves[shelf];
+        } else {
+          shelves[shelf].contents = revised_shelf;
+        }
+        this.setState({ shelves });
+      } else {
+        return(true);
+      }
+    });
+  };
+
+  // searchList = (query) => {
+  //   let currentList = [];
+  //   let newList = [];
+  //   if(query) {
+  //     // currentList = ;
+  //     const input = query.toLowerCase();
+  //   }
+  // };
+  
   render() {
+    // let shelvesToShow = this.showShelves();
     return (
       <div className="app-container">
-        <Jumbotron>
-          <h1>Cooked v1</h1>
-          <p>A List of our Ingredients!</p>
-        </Jumbotron>
+        <Header />
         <AddIngredient newIngredient={this.newIngredient} />
-        {/* <InputGroup className="padding">
-          <InputGroup.Prepend>
-            <InputGroup.Text id="ingredients-search">Search</InputGroup.Text>
-          </InputGroup.Prepend>
-          <FormControl aria-label="Ingredients Search" />
-        </InputGroup> */}
-        <List shelves={this.state.shelves} />
+        <List shelves={this.state.shelves} searchList={this.searchList} deleteIngredient={this.deleteIngredient} />
       </div>
     );
   }

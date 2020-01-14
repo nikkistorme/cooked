@@ -7,12 +7,14 @@ class AddIngredient extends React.Component {
 
   createIngredient = (event) => {
     event.preventDefault();
-    const ingredient = {
-      shelf: this.shelfRef.current.value,
-      name: this.ingredientRef.current.value
-    };
-    this.props.newIngredient(ingredient);
-    event.currentTarget.reset();
+    if (this.shelfRef.current.value && this.ingredientRef.current.value) {
+      const ingredient = {
+        shelf: this.shelfRef.current.value,
+        name: this.ingredientRef.current.value
+      };
+      this.props.newIngredient(ingredient);
+      event.currentTarget.reset();
+    }
   }
 
   render() {
