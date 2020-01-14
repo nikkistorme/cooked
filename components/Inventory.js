@@ -1,10 +1,8 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
+import AddIngredient from './AddIngredient';
+import Shelves from './Shelves';
 
-import Header from './components/Header';
-import List from './components/List';
-import AddIngredient from './components/AddIngredient';
-
-class App extends Component {
+class Inventory extends Component {
   state = {
     shelves: {},
     recipes: {}
@@ -72,25 +70,15 @@ class App extends Component {
     });
   };
 
-  // searchList = (query) => {
-  //   let currentList = [];
-  //   let newList = [];
-  //   if(query) {
-  //     // currentList = ;
-  //     const input = query.toLowerCase();
-  //   }
-  // };
-  
   render() {
-    // let shelvesToShow = this.showShelves();
     return (
-      <div className="app-container">
-        <Header />
+      <section>
+        <h1>Inventory</h1>
         <AddIngredient newIngredient={this.newIngredient} />
-        <List shelves={this.state.shelves} searchList={this.searchList} deleteIngredient={this.deleteIngredient} />
-      </div>
-    );
+        <Shelves shelves={this.state.shelves} searchList={this.searchList} deleteIngredient={this.deleteIngredient} />
+      </section>
+    )
   }
 }
 
-export default App;
+export default Inventory;

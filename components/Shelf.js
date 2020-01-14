@@ -1,5 +1,4 @@
 import React from 'react';
-import {ListGroup} from 'react-bootstrap';
 
 class Shelf extends React.Component {
   deleteIngredient = (item) => {
@@ -11,30 +10,17 @@ class Shelf extends React.Component {
     return (
       <div className="shelf">
         <h3>{this.props.details.name}</h3>
-        <ListGroup>
+        <div>
           {this.props.details.contents.map( (item, index) =>
-            <ListGroup.Item key={index}>
+            <div key={index}>
               {item}
               <span onClick={() => this.deleteIngredient(item)} style={{color: "red"}}>   delete</span>
-            </ListGroup.Item>
+            </div>
           )}
-        </ListGroup>
+        </div>
       </div>
     );
   }
 }
-
-// const Shelf = props => {
-//   return (
-//     <div className="shelf">
-//       <h3>{props.name}</h3>
-//       <ListGroup>
-//         {props.contents.map( (item, index) =>
-//           <ListGroup.Item key={index}>{item}</ListGroup.Item>
-//         )}
-//       </ListGroup>
-//     </div>
-//   );
-// }
 
 export default Shelf;

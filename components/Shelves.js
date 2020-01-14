@@ -1,15 +1,11 @@
 import React from 'react';
-
-// import Search from './Search';
 import Shelf from './Shelf';
 
-class List extends React.Component {
+class Shelves extends React.Component {
   render() {
-    // console.log(this.props.shelves);
     return (
-      <div className="padding">
+      <div>
         <h4>Shelves</h4>
-        {/* <Search searchList={this.props.searchList} /> */}
         <div>
           <ul>
             {Object.keys(this.props.shelves).map( (key) =>
@@ -27,4 +23,4 @@ class List extends React.Component {
   }
 }
 
-export default List;
+export default Shelves;
