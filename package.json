@@ -1,14 +1,14 @@
 {
   "name": "cooked",
   "version": "1.0.0",
-  "description": "",
+  "description": "Cooked is an app for managing the inventory of one's kitchen.",
   "main": "index.js",
   "scripts": {
     "dev": "next",
     "build": "next build",
     "start": "next start"
   },
-    "repository": {
+  "repository": {
     "type": "git",
     "url": "git+https://github.com/Nikkistorme/cooked.git"
   },
@@ -22,6 +22,10 @@
   "dependencies": {
     "next": "^9.1.7",
     "react": "^16.12.0",
-    "react-dom": "^16.12.0"
+    "react-dom": "^16.12.0",
+    "styled-components": "^5.0.0"
+  },
+  "devDependencies": {
+    "babel-plugin-styled-components": "^1.10.6"
   }
 }
