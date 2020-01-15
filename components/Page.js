@@ -46,6 +46,13 @@ const GlobalStyle = createGlobalStyle`
       list-style-type: none;
     }
   }
+  h1, h2, h3, h4 {
+    font-family: 'Abril Fatface', cursive;
+    margin: 0;
+  }
+  h1 {font-size: 2.25rem;}
+  h2 {font-size: 2rem;}
+  h3 {font-size: 1.75rem;}
 `;
 
 export default class Page extends React.Component {

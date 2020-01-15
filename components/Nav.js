@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const TopNav = styled.nav`
   width: 100%;
-  height: 45px;
+  height: 25px;
   display: flex;
   align-items: center;
   justify-content: center;
