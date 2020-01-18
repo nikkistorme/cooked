@@ -1,17 +1,38 @@
 import React, { Component } from 'react';
+import base from '../lib/base.js';
+import MyLoader from './MyLoader';
 import AddIngredient from './AddIngredient';
 import Shelves from './Shelves';
 
 class Inventory extends Component {
   state = {
     shelves: {},
-    recipes: {}
+    recipes: {},
+    status: 'loading'
+  };
+  componentDidMount() {
+    console.log(this.state.status);
+    this.shelvesRef = base.syncState(`/shelves`, {
+      context: this,
+      state: 'shelves',
+      then() {
+        this.setState({status: 'ready'});
+        console.log(this.state.status);
+      }
+    });
+    console.log('MOUNTED');
+  }
+
+  componentWillUnmount() {
+    base.removeBinding(this.shelvesRef);
   }
 
   // function for making a new shelf
   makeNewShelf = (ingredient) => {
+    const lowercase_shelf_name = ingredient.shelf.toLowerCase();
+    const capital_case_shelf_name = lowercase_shelf_name[0].toUpperCase() + lowercase_shelf_name.substring(1);
     const newShelf = {
-      name: ingredient.shelf,
+      name: capital_case_shelf_name,
       contents: [ingredient.name],
     }
     return(newShelf);
@@ -49,9 +70,9 @@ class Inventory extends Component {
   };
 
   deleteIngredient = (target_shelf, ingredient) => {
-    console.log(ingredient);
+    // console.log(ingredient);
     const shelves = {...this.state.shelves};
-    Object.keys(shelves).some(shelf => {
+    Object.keys(shelves).forEach(shelf => {
       if (shelves[shelf].name.toLowerCase() === target_shelf.toLowerCase()) {
         // console.log(target_shelf);
         const original_shelf = shelves[shelf].contents;
@@ -59,7 +80,7 @@ class Inventory extends Component {
           return item !== ingredient;
         });
         if (revised_shelf.length === 0) {
-          delete shelves[shelf];
+          shelves[shelf] = null;
         } else {
           shelves[shelf].contents = revised_shelf;
         }
@@ -71,11 +92,21 @@ class Inventory extends Component {
   };
 
   render() {
+    // if (this.state.status == 'loading') {
+    //   <p>Ingredients are loading</p>
+    // }
     return (
       <section>
         <h1>Inventory</h1>
-        <AddIngredient newIngredient={this.newIngredient} />
-        <Shelves shelves={this.state.shelves} searchList={this.searchList} deleteIngredient={this.deleteIngredient} />
+        {this.state.status === 'loading' ? <MyLoader /> : null}
+        <div className={this.state.status === 'loading' ? 'hidden' : null}>
+          <AddIngredient className={this.state.status === 'loading' ? 'hidden' : null}
+            newIngredient={this.newIngredient} />
+          <Shelves className={this.state.status === 'loading' ? 'hidden' : null}
+            shelves={this.state.shelves}
+            searchList={this.searchList}
+            deleteIngredient={this.deleteIngredient} />
+        </div>
       </section>
     )
   }

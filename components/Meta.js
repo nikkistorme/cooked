@@ -5,9 +5,9 @@ const Meta = () => (
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charSet="utf-8" />
     {/* <link rel="shortcut icon" type="image/ico" href="/static/favicon.ico" /> */}
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|Lato&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|Baskerville&display=swap" />
     {/* FONTS IMPORTED:
-    font-family: 'Lato', sans-serif;
+    font-family: 'Baskerville', serif;
     font-family: 'Abril Fatface', cursive; */}
     <title>Cooked</title>
   </Head>

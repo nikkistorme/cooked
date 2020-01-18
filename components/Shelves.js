@@ -1,24 +1,26 @@
 import React from 'react';
+import styled from 'styled-components';
 import Shelf from './Shelf';
 
+const ListOfShelves = styled.ul`
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 3px solid ${props => props.theme.color_primary};
+  /* overflow: scroll; */
+`;
 class Shelves extends React.Component {
   render() {
     return (
-      <div>
-        <h4>Shelves</h4>
-        <div>
-          <ul>
-            {Object.keys(this.props.shelves).map( (key) =>
-              <Shelf
-                key={key}
-                index={key}
-                details={this.props.shelves[key]}
-                deleteIngredient={this.props.deleteIngredient}
-              />
-            )}
-          </ul>
-        </div>
-      </div>
+      <ListOfShelves>
+        {Object.keys(this.props.shelves).map( (key) =>
+          <Shelf
+            key={key}
+            index={key}
+            details={this.props.shelves[key]}
+            deleteIngredient={this.props.deleteIngredient}
+          />
+        )}
+      </ListOfShelves>
     );
   }
 }

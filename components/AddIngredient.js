@@ -1,9 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
+import TextInput from './styles/TextInput';
+import Button from './styles/Button';
 
-const Row = styled.div`
+const AddContainer = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  div {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
 `;
 
 class AddIngredient extends React.Component {
@@ -25,12 +32,14 @@ class AddIngredient extends React.Component {
   render() {
     return (
       <form className="padding" onSubmit={this.createIngredient} >
-        <h2>Add New Ingredient</h2>
-        <Row>
-          <input type="text" placeholder="Name of Shelf" ref={this.shelfRef} />
-          <input type="text" placeholder="Name of Ingredient" ref={this.ingredientRef} />
-          <button variant="primary" type="submit">Add Ingredient</button>
-        </Row>
+        <h3>Add New Ingredient</h3>
+        <AddContainer>
+          <div>
+            <TextInput type="text" placeholder="Name of Shelf" ref={this.shelfRef} />
+            <TextInput type="text" placeholder="Name of Ingredient" ref={this.ingredientRef} />
+          </div>
+          <Button variant="primary" type="submit">Add Ingredient</Button>
+        </AddContainer>
       </form>
     );
   }
