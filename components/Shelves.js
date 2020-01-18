@@ -5,7 +5,8 @@ import Shelf from './Shelf';
 const ListOfShelves = styled.ul`
   margin-top: 15px;
   padding-top: 15px;
-  border-top: 3px solid lightgrey;
+  border-top: 3px solid ${props => props.theme.color_primary};
+  /* overflow: scroll; */
 `;
 class Shelves extends React.Component {
   render() {

@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const ShelfContainer = styled.li`
-  border-left: 3px solid lightgrey;
+  border-left: 3px solid ${props => props.theme.color_primary};
   border-radius: 10px;
   padding: 0 10px;
 `;

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const TextInput = styled.input`
-  border: 2px solid lightgray;
+  border: 2px solid ${props => props.theme.color_primary};
   padding: 10px;
   border-radius: 10px;
   margin: 5px;

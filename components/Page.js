@@ -5,12 +5,17 @@ import Header from './Header';
 import Meta from './Meta';
 
 const theme = {
-  black: '#000',
-  white: '#fff'
+  black: '#001524',
+  white: '#fff',
+  color_primary: '#83C5BE',
+  color_secondary: '#FFECD1',
+  color_background: '#EDF6F9',
+  font_heading: "'Abril Fatface', cursive",
+  font_body: "'Baskerville', serif"
 };
 
 const StyledPage = styled.div`
-  background: ${props => props.theme.white};
+  /* background: ${props => props.theme.color_background}; */
   color: ${props => props.theme.black};
 `;
 
@@ -18,6 +23,9 @@ const Inner = styled.div`
   max-width: 1000px;
   margin: 0 auto;
   padding: 2rem;
+  .hidden {
+    display: none;
+  }
 `;
 
 const GlobalStyle = createGlobalStyle`
@@ -31,9 +39,10 @@ const GlobalStyle = createGlobalStyle`
   body {
     padding: 0;
     margin: 0;
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     line-height: 2;
-    font-family: 'Lato', sans-serif;
+    font-family: ${theme.font_body};
+    color: ${theme.black};
   }
   a {
     text-decoration: none;
@@ -47,12 +56,13 @@ const GlobalStyle = createGlobalStyle`
     }
   }
   h1, h2, h3, h4 {
-    font-family: 'Abril Fatface', cursive;
+    font-family: ${theme.font_heading};
     margin: 0;
   }
-  h1 {font-size: 2.25rem;}
-  h2 {font-size: 2rem;}
-  h3 {font-size: 1.75rem;}
+  h1 {font-size: 2.35rem;}
+  h2 {font-size: 2.1rem;}
+  h3 {font-size: 1.85rem;}
+  button, input {font-family: ${theme.font_body}}
 `;
 
 export default class Page extends React.Component {
